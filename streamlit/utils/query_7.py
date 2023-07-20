@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 import os
 import pandas as pd
 import random
+from utils.generic import run_query
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -39,57 +40,4 @@ def query(gender="M", marital_status="S", education="College", year=random.randi
         order by i_item_id
         limit {limit};
     """
-    try:
-        connection = engine.connect()
-        # results = connection.execute('select current_version()').fetchone()
-        # print(results[0])
-        df = pd.read_sql(query, connection)
-        return df
-    finally:
-        connection.close()
-        engine.dispose()
-
-def distinct_years():
-    try:
-        query = "select distinct d_year from date_dim"
-        connection = engine.connect()
-        df = pd.read_sql(query, connection)
-        return df["d_year"].values.tolist()
-    finally:
-        connection.close()
-        engine.dispose()
-
-def distinct_marital_status():
-    try:
-        query = "select distinct cd_marital_status from customer_demographics"
-        connection = engine.connect()
-        df = pd.read_sql(query, connection)
-        return df["cd_marital_status"].values.tolist()
-    finally:
-        connection.close()
-        engine.dispose()
-
-def distinct_education_status():
-    try:
-        query = "select distinct cd_education_status from customer_demographics"
-        connection = engine.connect()
-        df = pd.read_sql(query, connection)
-        return df["cd_education_status"].values.tolist()
-    finally:
-        connection.close()
-        engine.dispose()
-
-def distinct_gender():
-    try:
-        query = "select distinct cd_gender from customer_demographics"
-        connection = engine.connect()
-        df = pd.read_sql(query, connection)
-        return df["cd_gender"].values.tolist()
-    finally:
-        connection.close()
-        engine.dispose()
-
-print(distinct_years())
-print(distinct_marital_status())
-print(distinct_education_status())
-print(distinct_gender())
+    return run_query(query)

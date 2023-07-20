@@ -25,3 +25,23 @@ def run_query(query):
     finally:
         connection.close()
         engine.dispose()
+
+def distinct_years():
+    query = "select distinct d_year from date_dim"
+    df = run_query(query)
+    return df["d_year"].values.tolist()
+
+def distinct_marital_status():
+    query = "select distinct cd_marital_status from customer_demographics"
+    df = run_query(query) 
+    return df["cd_marital_status"].values.tolist()
+
+def distinct_education_status():
+    query = "select distinct cd_education_status from customer_demographics"
+    df = run_query(query) 
+    return df["cd_education_status"].values.tolist()
+    
+def distinct_gender():
+    query = "select distinct cd_gender from customer_demographics"
+    df = run_query(query) 
+    return df["cd_gender"].values.tolist()
