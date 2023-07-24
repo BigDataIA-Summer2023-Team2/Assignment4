@@ -1,2 +1,4 @@
 python-dotenv
+pyarrow==10.0.1
 streamlit
+snowflake-sqlalchemy<2.0
