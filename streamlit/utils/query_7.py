@@ -1,23 +1,5 @@
-from sqlalchemy import create_engine
-import os
-import pandas as pd
 import random
 from utils.generic import run_query
-from dotenv import load_dotenv
-
-load_dotenv()
-
-USERNAME=os.environ.get("username")
-PASSWORD=os.environ.get("password")
-ACCOUNT_IDENTIFIER=os.environ.get("accountname")
-
-engine = create_engine(
-    'snowflake://{user}:{password}@{account_identifier}/snowflake_sample_data/tpcds_sf10Tcl'.format(
-        user=USERNAME,
-        password=PASSWORD,
-        account_identifier=ACCOUNT_IDENTIFIER,
-    )
-)
 
 def query(gender="M", marital_status="S", education="College", year=random.randint(1998, 2002), limit=10):
     query = f"""

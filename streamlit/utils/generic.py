@@ -45,3 +45,13 @@ def distinct_gender():
     query = "select distinct cd_gender from customer_demographics"
     df = run_query(query) 
     return df["cd_gender"].values.tolist()
+
+def distinct_qoys():
+    query = "select distinct d_qoy from date_dim"
+    df = run_query(query) 
+    return df["d_qoy"].values.tolist()
+
+def distinct_zips():
+    query = "select distinct ca_zip from customer_address"
+    df = run_query(query) 
+    return df["ca_zip"].values.tolist()
