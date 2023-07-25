@@ -30,6 +30,11 @@ def distinct_years():
     df = run_query(query)
     return df["d_year"].values.tolist()
 
+def distinct_dates():
+    query = "select distinct d_date from date_dim"
+    df = run_query(query)
+    return df["d_date"].values.tolist()
+
 def distinct_marital_status():
     query = "select distinct cd_marital_status from customer_demographics"
     df = run_query(query) 
@@ -54,3 +59,8 @@ def distinct_zips():
     query = "select distinct ca_zip from customer_address"
     df = run_query(query) 
     return df["ca_zip"].values.tolist()
+
+def distinct_categories():
+    query = "select distinct i_category from item"
+    df = run_query(query) 
+    return df["i_category"].values.tolist()
