@@ -12,11 +12,11 @@ def input_elements():
     return genders, years, marital_statuses, education_statuses
 
 st.set_page_config(
-    page_title="Home Page",
+    page_title="Query 7",
     page_icon="👋",
 )
 
-st.title("TPC DS Queries Snoflake")
+st.title("TPC DS Query 7")
 
 st.markdown(
     """
@@ -25,21 +25,24 @@ st.markdown(
     educational status.
     """
 )
-genders, years, marital_statuses, education_statuses = input_elements()
+if not st.session_state["authentication_status"]:
+    st.warning('Access Denied! Please authenticate yourself on Home Page.', icon="⚠️")
+else:
+    genders, years, marital_statuses, education_statuses = input_elements()
 
-gender = st.selectbox('Gender', genders)
-marital_status = st.selectbox('Marital Status', marital_statuses)
-education = st.selectbox('Education', education_statuses)
-year = st.number_input('Year', min_value=min(years), max_value=max(years))
-limit = st.number_input('Limit result', min_value=5, max_value=100)
+    gender = st.selectbox('Gender', genders)
+    marital_status = st.selectbox('Marital Status', marital_statuses)
+    education = st.selectbox('Education', education_statuses)
+    year = st.number_input('Year', min_value=min(years), max_value=max(years))
+    limit = st.number_input('Limit result', min_value=5, max_value=100)
 
-if st.button("Aggregate"):
-    with st.spinner(text="Fetching..."):
-        df = query(
-            gender=gender, 
-            marital_status=marital_status, 
-            education=education, 
-            year=year, 
-            limit=10
-        )
-    st.write(df)
+    if st.button("Aggregate"):
+        with st.spinner(text="Fetching..."):
+            df = query(
+                gender=gender, 
+                marital_status=marital_status, 
+                education=education, 
+                year=year, 
+                limit=10
+            )
+        st.write(df)
