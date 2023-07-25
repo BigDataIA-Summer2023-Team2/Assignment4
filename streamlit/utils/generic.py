@@ -6,41 +6,40 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-@st.cache_resource
 def connection():
     conn = st.experimental_connection('snowpark')
     return conn
 
-conn = connection()
-
 def run_query(query):    
+    conn = connection()
     df = conn.query(query, ttl=600)
     return df
     
 def distinct_years():
     query = "select distinct d_year from date_dim"
     df = run_query(query)
-    return df["d_year"].values.tolist()
+    return df["D_YEAR"].values.tolist()
 
 def distinct_dates():
     query = "select distinct d_date from date_dim"
     df = run_query(query)
-    return df["d_date"].values.tolist()
+    return df["D_DATE"].values.tolist()
 
 def distinct_marital_status():
     query = "select distinct cd_marital_status from customer_demographics"
     df = run_query(query) 
-    return df["cd_marital_status"].values.tolist()
+    return df["CD_MARITAL_STATUS"].values.tolist()
 
 def distinct_education_status():
     query = "select distinct cd_education_status from customer_demographics"
     df = run_query(query) 
-    return df["cd_education_status"].values.tolist()
+    return df["CD_EDUCATION_STATUS"].values.tolist()
     
 def distinct_gender():
     query = "select distinct cd_gender from customer_demographics"
     df = run_query(query) 
-    return df["cd_gender"].values.tolist()
+    st.write(df)
+    return df["CD_GENDER"].values.tolist()
 
 def distinct_counties():
     query = "select distinct ca_county from customer_address"
@@ -50,17 +49,17 @@ def distinct_counties():
 def distinct_qoys():
     query = "select distinct d_qoy from date_dim"
     df = run_query(query) 
-    return df["d_qoy"].values.tolist()
+    return df["D_QOY"].values.tolist()
 
 def distinct_zips():
     query = "select distinct ca_zip from customer_address"
     df = run_query(query) 
-    return df["ca_zip"].values.tolist()
+    return df["CA_ZIP"].values.tolist()
 
 def distinct_categories():
     query = "select distinct i_category from item"
     df = run_query(query) 
-    return df["i_category"].values.tolist()
+    return df["I_CATEGORY"].values.tolist()
 
 def generate_random_counties(fips_county):
     # Assuming fips_county is a list of unique county names
@@ -71,4 +70,4 @@ def generate_random_counties(fips_county):
 def distinct_months():
     query = "select distinct d_moy from date_dim"
     df = run_query(query) 
-    return df["d_moy"].values.tolist()
+    return df["D_MOY"].values.tolist()
