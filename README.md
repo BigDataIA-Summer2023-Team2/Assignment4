@@ -11,10 +11,6 @@
 * [Streamlit](http://34.136.31.176:8090/)
 * [Codelabs](https://codelabs-preview.appspot.com/?file_id=1lap9Vb67gt5LqbizQqg99aGZz84vDvcE3179fATSm3M#0)
 
-<!-- ## Architecture
-
-Following is the architecture diagram for the current application
-![Architecture Diagram](./diagrams/architecture.png) -->
 
 ## Running the application
 ### Pre-requisites
@@ -45,6 +41,27 @@ Following is the architecture diagram for the current application
 ## Project Tree
 
 ```
+.
+├── Makefile
+├── README.md
+├── docker-compose-local.yml
+├── streamlit
+│   ├── Dockerfile
+│   ├── Home.py
+│   ├── pages
+│   │   ├── 1_Query_7.py
+│   │   └── 2_Query_8.py
+│   ├── requirements.txt
+│   └── utils
+│       ├── generic.py
+│       ├── query_7.py
+│       └── query_8.py
+└── terraform
+    ├── main.tf
+    ├── resources.tf
+    ├── startup.sh
+    ├── terraform.tfvars.example
+    └── variables.tf
 ```
 
 ## References
