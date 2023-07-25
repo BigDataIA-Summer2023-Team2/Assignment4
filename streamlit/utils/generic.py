@@ -9,15 +9,14 @@ USERNAME=os.environ.get("username")
 PASSWORD=os.environ.get("password")
 ACCOUNT_IDENTIFIER=os.environ.get("accountname")
 
-engine = create_engine(
-    'snowflake://{user}:{password}@{account_identifier}/snowflake_sample_data/tpcds_sf10Tcl'.format(
-        user=USERNAME,
-        password=PASSWORD,
-        account_identifier=ACCOUNT_IDENTIFIER,
-    )
-)
-
 def run_query(query):
+    engine = create_engine(
+        'snowflake://{user}:{password}@{account_identifier}/snowflake_sample_data/tpcds_sf10Tcl'.format(
+            user=USERNAME,
+            password=PASSWORD,
+            account_identifier=ACCOUNT_IDENTIFIER,
+        )
+    )
     try:
         connection = engine.connect()
         df = pd.read_sql(query, connection)
