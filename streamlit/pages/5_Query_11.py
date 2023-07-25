@@ -8,6 +8,9 @@ def input_elements():
     years = generic.distinct_years()
     return years
 
+if "authentication_status" not in st.session_state:
+    st.session_state["authentication_status"] = False
+    
 st.set_page_config(
     page_title="Query11",
     page_icon="👋",

@@ -11,6 +11,9 @@ def input_elements():
     zips = generic.distinct_zips()
     return years, qoys, zips
 
+if "authentication_status" not in st.session_state:
+    st.session_state["authentication_status"] = False
+
 st.set_page_config(
     page_title="Query 8",
     page_icon="👋",
