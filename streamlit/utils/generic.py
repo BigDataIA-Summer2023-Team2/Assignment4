@@ -9,15 +9,14 @@ USERNAME=os.environ.get("username")
 PASSWORD=os.environ.get("password")
 ACCOUNT_IDENTIFIER=os.environ.get("accountname")
 
-engine = create_engine(
-    'snowflake://{user}:{password}@{account_identifier}/snowflake_sample_data/tpcds_sf10Tcl'.format(
-        user=USERNAME,
-        password=PASSWORD,
-        account_identifier=ACCOUNT_IDENTIFIER,
-    )
-)
-
 def run_query(query):
+    engine = create_engine(
+        'snowflake://{user}:{password}@{account_identifier}/snowflake_sample_data/tpcds_sf10Tcl'.format(
+            user=USERNAME,
+            password=PASSWORD,
+            account_identifier=ACCOUNT_IDENTIFIER,
+        )
+    )
     try:
         connection = engine.connect()
         df = pd.read_sql(query, connection)
@@ -30,6 +29,11 @@ def distinct_years():
     query = "select distinct d_year from date_dim"
     df = run_query(query)
     return df["d_year"].values.tolist()
+
+def distinct_dates():
+    query = "select distinct d_date from date_dim"
+    df = run_query(query)
+    return df["d_date"].values.tolist()
 
 def distinct_marital_status():
     query = "select distinct cd_marital_status from customer_demographics"
@@ -55,3 +59,8 @@ def distinct_zips():
     query = "select distinct ca_zip from customer_address"
     df = run_query(query) 
     return df["ca_zip"].values.tolist()
+
+def distinct_categories():
+    query = "select distinct i_category from item"
+    df = run_query(query) 
+    return df["i_category"].values.tolist()
