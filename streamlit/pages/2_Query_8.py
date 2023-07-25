@@ -16,26 +16,29 @@ st.set_page_config(
     page_icon="👋",
 )
 
-st.title("TPC DS Queries Snoflake")
+st.title("TPC DS Query 8")
 
 st.markdown(
     """
     Compute the net profit of stores located in 400 Metropolitan areas with more than 10 preferred customers.
     """
 )
-years, qoys, zips = input_elements()
+if not st.session_state["authentication_status"]:
+    st.warning('Access Denied! Please authenticate yourself on Home Page.', icon="⚠️")
+else:
+    years, qoys, zips = input_elements()
 
-year = st.number_input('Year', min_value=min(years), max_value=max(years))
-qoy = st.number_input('QOY', min_value=min(qoys), max_value=max(qoys))
-zips = st.multiselect('ZIP codes', zips)
-limit = st.number_input('Limit result', min_value=5, max_value=100)
+    year = st.number_input('Year', min_value=min(years), max_value=max(years))
+    qoy = st.number_input('QOY', min_value=min(qoys), max_value=max(qoys))
+    zips = st.multiselect('ZIP codes', zips)
+    limit = st.number_input('Limit result', min_value=5, max_value=100)
 
-if st.button("Aggregate"):
-    with st.spinner(text="Fetching..."):
-        df = query(
-            year=year,
-            qoy = qoy, 
-            ZIP=zips, 
-            limit=limit
-        )
-    st.write(df)
+    if st.button("Aggregate"):
+        with st.spinner(text="Fetching..."):
+            df = query(
+                year=year,
+                qoy = qoy, 
+                ZIP=zips, 
+                limit=limit
+            )
+        st.write(df)
