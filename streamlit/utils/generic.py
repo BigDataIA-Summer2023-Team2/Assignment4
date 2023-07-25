@@ -1,30 +1,22 @@
 import os
 import pandas as pd
 from sqlalchemy import create_engine
+import streamlit as st
 from dotenv import load_dotenv
 
 load_dotenv()
 
-USERNAME=os.environ.get("username")
-PASSWORD=os.environ.get("password")
-ACCOUNT_IDENTIFIER=os.environ.get("accountname")
+@st.cache_resource
+def connection():
+    conn = st.experimental_connection('snowpark')
+    return conn
 
-def run_query(query):
-    engine = create_engine(
-        'snowflake://{user}:{password}@{account_identifier}/snowflake_sample_data/tpcds_sf10Tcl'.format(
-            user=USERNAME,
-            password=PASSWORD,
-            account_identifier=ACCOUNT_IDENTIFIER,
-        )
-    )
-    try:
-        connection = engine.connect()
-        df = pd.read_sql(query, connection)
-        return df
-    finally:
-        connection.close()
-        engine.dispose()
+conn = connection()
 
+def run_query(query):    
+    df = conn.query(query, ttl=600)
+    return df
+    
 def distinct_years():
     query = "select distinct d_year from date_dim"
     df = run_query(query)
