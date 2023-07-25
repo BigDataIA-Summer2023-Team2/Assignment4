@@ -1,0 +1,2 @@
+project          = "assignment4-393820"
+credentials_file = "gcp_key.json"
