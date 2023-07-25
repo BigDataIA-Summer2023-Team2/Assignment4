@@ -38,13 +38,12 @@ def distinct_education_status():
 def distinct_gender():
     query = "select distinct cd_gender from customer_demographics"
     df = run_query(query) 
-    st.write(df)
     return df["CD_GENDER"].values.tolist()
 
 def distinct_counties():
     query = "select distinct ca_county from customer_address"
     df = run_query(query) 
-    return df["ca_county"].values.tolist()
+    return df["CA_COUNTY"].values.tolist()
 
 def distinct_qoys():
     query = "select distinct d_qoy from date_dim"
