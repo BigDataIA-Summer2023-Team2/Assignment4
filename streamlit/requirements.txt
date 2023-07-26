@@ -3,4 +3,4 @@ pyarrow==10.0.1
 streamlit
 snowflake-sqlalchemy<2.0
 streamlit-authenticator
-"snowflake-snowpark-python[pandas]"
+snowflake-snowpark-python[pandas]

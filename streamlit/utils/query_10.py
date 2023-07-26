@@ -1,7 +1,9 @@
 import random
 import string
 from utils.generic import run_query
+import streamlit as st
 
+@st.cache_data
 def query(year=2000, 
           month = random.randint(1,2), 
           county = [''.join(random.choices(string.ascii_uppercase, k=20)) for i in range(400)],
