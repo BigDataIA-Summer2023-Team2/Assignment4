@@ -29,5 +29,5 @@ def query(year=2000,
     order by s_store_name
     limit {limit};"""
     df = run_query(query)
-    df.rename(columns = {"s_store_name": "Store Name", "sum(ss_net_profit)": "Net profit"}, inplace=True)
+    df.rename(columns = {"S_STORE_NAME": "Store Name", "SUM(SS_NET_PROFIT)": "Net profit"}, inplace=True)
     return df
