@@ -23,9 +23,9 @@ def query(gender="M", marital_status="S", education="College", year=random.randi
         limit {limit};
     """
     df = run_query(query)
-    df.rename(columns = {"i_item_id": "Item ID", 
-                         "agg1": "Avg. Quantity",
-                         "agg2" : "Avg. List price",
-                         "agg3" : "Avg. Discount amount",
-                         "agg4" : "Avg. Sales price"}, inplace=True)
+    df.rename(columns = {"I_ITEM_ID": "Item ID", 
+                         "AGG1": "Avg. Quantity",
+                         "AGG2" : "Avg. List price",
+                         "AGG3" : "Avg. Discount amount",
+                         "AGG4" : "Avg. Sales price"}, inplace=True)
     return df
