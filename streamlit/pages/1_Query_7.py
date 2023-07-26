@@ -11,6 +11,9 @@ def input_elements():
     education_statuses = generic.distinct_education_status()
     return genders, years, marital_statuses, education_statuses
 
+if "authentication_status" not in st.session_state:
+    st.session_state["authentication_status"] = False
+    
 st.set_page_config(
     page_title="Query 7",
     page_icon="👋",

@@ -11,6 +11,9 @@ def input_elements():
     dates = generic.distinct_dates()
     return categories, years, dates
 
+if "authentication_status" not in st.session_state:
+    st.session_state["authentication_status"] = False
+
 st.set_page_config(
     page_title="Query12",
     page_icon="👋",

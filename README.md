@@ -22,19 +22,46 @@
     ```bash
         git clone https://github.com/BigDataIA-Summer2023-Team2/Assignment3.git
     ```
-1. Create an environment file with following variables defined
+2. Create an .streamlit/secrets.toml file in streamlit folder with following variables defined
     ```bash
-        accountname=xxx
-        username=xxx
-        password=xxx
+        [connections.snowpark]
+        account="xxx"
+        user="xxx"
+        password="xxx"
+        role = "xxx"
+        warehouse = "xxx"
+        database = "xxx"
+        schema = "xxx"
+        client_session_keep_alive = true
     ```
-1. Run the make command to build and deploy the application
+3. Create a credentials.yaml file in streamlit folder with following information for predefined users to access your application
+    ```yaml
+        credentials:
+        usernames:
+            jsmith:
+                email: jsmith@gmail.com
+                name: John Smith
+                password: xxx # hash_password
+            rbriggs:
+                email: rbriggs@gmail.com
+                name: Rebecca Briggs
+                password: xxx # hash_password
+        cookie:
+            expiry_days: 30
+            key: random_signature_key # Must be string
+            name: random_cookie_name
+        preauthorized:
+            emails:
+            - melsby@gmail.com
+
+    ```
+4. Run the make command to build and deploy the application
     ```bash
         make build-up
     ```
-1. Applciation would be accessible on localhost at following URLs \
+5. Applciation would be accessible on localhost at following URLs \
     **Streamlit:** http://localhost:8090/ \
-2. Destroying the deployed environment
+6. Destroying the deployed environment
     ```bash
         make down
     ```
