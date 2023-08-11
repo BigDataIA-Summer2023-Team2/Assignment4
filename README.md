@@ -22,39 +22,23 @@
     ```bash
         git clone https://github.com/BigDataIA-Summer2023-Team2/Assignment3.git
     ```
-2. Create an .streamlit/secrets.toml file in streamlit folder with following variables defined
-    ```bash
-        [connections.snowpark]
-        account="xxx"
-        user="xxx"
-        password="xxx"
-        role = "xxx"
-        warehouse = "xxx"
-        database = "xxx"
-        schema = "xxx"
-        client_session_keep_alive = true
-    ```
-3. Create a credentials.yaml file in streamlit folder with following information for predefined users to access your application
-    ```yaml
-        credentials:
-        usernames:
-            jsmith:
-                email: jsmith@gmail.com
-                name: John Smith
-                password: xxx # hash_password
-            rbriggs:
-                email: rbriggs@gmail.com
-                name: Rebecca Briggs
-                password: xxx # hash_password
-        cookie:
-            expiry_days: 30
-            key: random_signature_key # Must be string
-            name: random_cookie_name
-        preauthorized:
-            emails:
-            - melsby@gmail.com
-
-    ```
+2. Create a gcs_key.json{} file in airflow and streamlit folder with following variables defined
+{
+    "type": "service_account",
+    "project_id": "projectid",
+    "private_key_id": "xxx",
+    "private_key": "\n---- PRIVATE KEY-----\n",
+    "client_email": "clientname@projectid.iam.gserviceaccount.com",
+    "client_id": "000",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/client_email",
+    "universe_domain": "googleapis.com"
+  }
+  
+3. Create a kaggle.json{} file in airflow folder with following variables defined
+    {"username":"xxx","key":"000"}
 4. Run the make command to build and deploy the application
     ```bash
         make build-up
@@ -68,43 +52,19 @@
 ## Project Tree
 
 ```
-.
-├── Makefile
-├── README.md
-├── docker-compose-local.yml
-├── streamlit
-│   ├── Dockerfile
-│   ├── Home.py
-│   ├── pages
-│   │   ├── 1_Query_7.py
-│   │   └── 2_Query_8.py
-│   ├── requirements.txt
-│   └── utils
-│       ├── generic.py
-│       ├── query_7.py
-│       └── query_8.py
-└── terraform
-    ├── main.tf
-    ├── resources.tf
-    ├── startup.sh
-    ├── terraform.tfvars.example
-    └── variables.tf
-```
+
 
 ## References
 - [Streamlit](https://streamlit.io/)
-- [Snowflake](https://docs.snowflake.com/en/learn-quickstarts)
 - [Snowflake SQLAlchemy](https://docs.snowflake.com/en/user-guide/sqlalchemy)
-- [TPC-DS](https://www.tpc.org/tpc_documents_current_versions/pdf/tpc-ds_v2.5.0.pdf)
-- [TPC-DSQuery-Github](https://github.com/gregrahn/tpcds-kit/tree/master)
 
 
 ## Team
 | Contributor    | Contibutions |
 | -------- | ------- |
-| Ashritha Goramane  | Query7, Query8, IaC  |
-| Parvati Sohani     | Query9, Query10		|
-| Rishabh Indoria    | Query11, Query12		|
+| Ashritha Goramane  |  |
+| Parvati Sohani     |	|
+| Rishabh Indoria    | 	|
 
 Guided by: Prof. Srikanth Krishnamurthy
 Supported by: [Piyush](https://github.com/piyush-an)
